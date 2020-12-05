@@ -9,7 +9,10 @@ namespace Ticketing.Client
     {
         static void Main(string[] args)
         {
-            DataService dataService = new DataService();
+            var serviceProvider = DIConfig.ConfigDI();
+            DataService dataService = serviceProvider
+                .GetService<DataService>();
+                //new DataService();
 
             Console.WriteLine("=== Ticket Management ===");
             bool quit = false;
@@ -40,7 +43,7 @@ namespace Ticketing.Client
                         ticket.Description = GetData("Descrizione");
                         ticket.Category = GetData("Categoria");
                         ticket.Priority = GetData("Priorità");
-                        ticket.Requestor = "Roberto Ajolfi";
+                        ticket.Requestor = "Giulia Carli";
                         ticket.State = "New";
                         ticket.IssueDate = DateTime.Now;
                         
